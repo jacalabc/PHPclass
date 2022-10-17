@@ -27,6 +27,7 @@ $result=str_replace($target,$sub,$str);
 echo $str."<br>";
 echo $result;
 echo "<hr>";
+print_r(explode($target,$str));
 echo join($sub,explode($target,$str))
 ?>
  
