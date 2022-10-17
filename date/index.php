@@ -30,7 +30,7 @@
     <h2>練習</h2>
     <ul>
         <li><a href = "practice01.php">練習一:計算日期間隔</a></li>
-        <li><a href = "">練習二:</a></li>
+        <li><a href = "practice02.php">練習二:計算自己的生日還有幾天</a></li>
         <li><a href = "">練習三:</a></li>
         <li><a href = "">練習四:</a></li>
         <li><a href = "">練習五:</a></li>
