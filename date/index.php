@@ -21,12 +21,15 @@
      $now = $now+(60*60*24)*30;
      echo $now;
      echo "<br>";
-    echo date("西元Y年m月d日 H:i:s l",$now);
+     echo date("西元Y年m月d日 H:i:s l",$now);
+     echo "<hr>";
+
+     $tomorrow=strtotime("-1 year");
     ?>
 
     <h2>練習</h2>
     <ul>
-        <li><a href = "">練習一:</a></li>
+        <li><a href = "practice01.php">練習一:計算日期間隔</a></li>
         <li><a href = "">練習二:</a></li>
         <li><a href = "">練習三:</a></li>
         <li><a href = "">練習四:</a></li>
