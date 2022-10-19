@@ -31,8 +31,8 @@
     <ul>
         <li><a href = "practice01.php">練習一:計算日期間隔</a></li>
         <li><a href = "practice02.php">練習二:計算自己的生日還有幾天</a></li>
-        <li><a href = "practice03.php">練習三:</a></li>
-        <li><a href = "">練習四:</a></li>
+        <li><a href = "practice03.php">練習三:date函式的參數練習</a></li>
+        <li><a href = "practice04.php">練習四:利用迴圈來計算連續五個周一的日期</a></li>
         <li><a href = "">練習五:</a></li>
     </ul>
 </body>
