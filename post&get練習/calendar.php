@@ -32,6 +32,38 @@
         $nextMonth=$month+1;
         $previousMonth=$month-1;
 
+        $nextYear=$year+1;
+        $previousYear=$year-1;
+
+        // 搜尋結果的月份變化 &m=月份
+        if($month>=12){
+            $nextMonth=1;          
+        }else{
+            
+        }
+
+        // 搜尋結果的月份變化 &m=月份
+        if($month<=1){
+            $previousMonth=12;
+        }else{
+            
+        }
+
+        // h1顯示的月份變化
+        if($month>=13){
+            $month=1;                                  
+        }else{
+            
+        }
+
+        // h1顯示的月份變化
+        if($month<1){
+            $month=12;
+        }else{
+            
+        }
+        
+
         $firstDay=$year."-".$month."-1";
         $firstDayWeek=date("N",strtotime($firstDay));
         $monthDays=date("t",strtotime($firstDay));
@@ -39,10 +71,14 @@
         $spaceDays=$firstDayWeek-1;
         // spaceDays代表空白天數 例如 今天星期六 6-1=5 前面有5天
         $weeks=ceil(($monthDays+$spaceDays)/7); 
-        // week 算出這個月有幾周
+        // weeks 算出這個月有幾周
         // ceil函式 => 無條件進位
+        for($i=0;$i<$spaceDays;$i++){
+            $cal[]='';
+        }
         for($i=0;$i<$monthDays;$i++){
             $cal[]=date("Y-m-d",strtotime("$i days",strtotime($firstDay)));
+            // $cal[]=date("d",strtotime("$i days",strtotime($firstDay)));
         }
     // echo "<pre>";
     // print_r($cal);
@@ -52,6 +88,7 @@
     echo "該月共".$monthDays."天，最後一天是".$lastday;    
     echo "<br>";
     echo "月曆天數共".($monthDays+$spaceDays)."天，".$weeks."周";
+
 
     ?>
     <!-- ?表示當前頁面 -->
