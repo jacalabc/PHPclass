@@ -13,63 +13,61 @@
             text-align:center;
         }
         table{
-            border-collapse: collapse;
+            border-collapse: collapse;            
+        }
+        td:nth-child(1),
+        td:nth-child(7) {
+            background-color: pink;
         }
         table td{
             border:1px solid #ccc;
             padding:3px 9px;
         }
+        .main{
+            width:80%;
+            border:1px solid black;
+            height:500px;
+            margin-top:100px;
+        }
+
     </style>
 </head>
 
-<body>
+<body class="main">
     <?php
     $cal = [];
 
         $month=(isset($_GET['m']))?$_GET['m']:date("n");
         $year=(isset($_GET['y']))?$_GET['y']:date("Y");
-
+        // echo "month".$month."月"."<br>";
         $nextMonth=$month+1;
-        $previousMonth=$month-1;
-
-        $nextYear=$year+1;
-        $previousYear=$year-1;
-
-        // 搜尋結果的月份變化 &m=月份
-        if($month>=12){
-            $nextMonth=1;          
-        }else{
-            
+        $preMonth=$month-1;
+        $nextYear=$year;
+        $preYear=$year;
+      
+        if($nextMonth==13){
+            $nextMonth=1;
+            $nextYear=$year+1;
         }
-
-        // 搜尋結果的月份變化 &m=月份
-        if($month<=1){
-            $previousMonth=12;
-        }else{
-            
+        if($preMonth==0){
+            $preMonth=12;
+            $preYear=$year-1;
         }
-
-        // h1顯示的月份變化
-        if($month>=13){
-            $month=1;                                  
-        }else{
             
-        }
+        // echo "nextMonth".$nextMonth."月"."<br>";
+        // echo "preMonth".$preMonth."月"."<br>";
+        // echo "month".$month."月"."<br>";
+        // echo "year".$year."年"."<br>";
+        // echo "nextYear".$nextYear."年"."<br>";
+        // echo "preYear".$preYear."年"."<br>";
 
-        // h1顯示的月份變化
-        if($month<1){
-            $month=12;
-        }else{
-            
-        }
-        
 
         $firstDay=$year."-".$month."-1";
-        $firstDayWeek=date("N",strtotime($firstDay));
+        $firstDayWeek=date("w",strtotime($firstDay));
         $monthDays=date("t",strtotime($firstDay));
         $lastday=$year."-".$month."-".$monthDays;
-        $spaceDays=$firstDayWeek-1;
-        // spaceDays代表空白天數 例如 今天星期六 6-1=5 前面有5天
+        $spaceDays=$firstDayWeek;
+        // spaceDays代表空白天數 例如 今天星期六  前面有6天
         $weeks=ceil(($monthDays+$spaceDays)/7); 
         // weeks 算出這個月有幾周
         // ceil函式 => 無條件進位
@@ -83,28 +81,39 @@
     // echo "<pre>";
     // print_r($cal);
     // echo "</pre>";
+    if($firstDayWeek==0){
+        $firstDayWeek=7;
+    }
     echo "第一天".$firstDay."星期".$firstDayWeek;
     echo "<br>";
     echo "該月共".$monthDays."天，最後一天是".$lastday;    
     echo "<br>";
     echo "月曆天數共".($monthDays+$spaceDays)."天，".$weeks."周";
 
-
     ?>
     <!-- ?表示當前頁面 -->
     <div style="display:flex;width:80%;justify-content:space-between;align-items:center">
-    <a href="?y=2022&m=<?=$previousMonth;?>">上一個月</a>
+    <a href="?y=<?=$preYear;?>&m=<?=$preMonth;?>">上一個月</a>
     <h1><?=$year;?> 年 <?=$month;?> 月份</h1>
-    <a href="?y=2022&m=<?=$nextMonth;?>">下一個月</a>
+    <a href="?y=<?=$nextYear;?>&m=<?=$nextMonth;?>">下一個月</a>
     </div>
     <table>
+    <tr>
+            <td>日</td>
+            <td>一</td>
+            <td>二</td>
+            <td>三</td>
+            <td>四</td>
+            <td>五</td>
+            <td>六</td>
+        </tr>
         <?php
         foreach ($cal as $i => $day) {
             if($i%7==0){
-                echo "<tr>";
-            }           
+                echo "<tr>";               
+            }                      
             echo "<td>$day</td>";
-            if($i%7==6){
+            if($i%7==6){            
                 echo "</tr>";
             }            
         }
