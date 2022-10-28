@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>萬年曆</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         *{
             margin:0 auto;
@@ -13,7 +14,8 @@
             text-align:center;
         }
         table{
-            border-collapse: collapse;            
+            border-collapse: collapse;
+            width: 80%;   
         }
         td:nth-child(1),
         td:nth-child(7) {
@@ -24,16 +26,34 @@
             padding:3px 9px;
         }
         .main{
-            width:80%;
+            width:60%;
             border:1px solid black;
             height:500px;
             margin-top:100px;
+            background-color:rgb(230, 250, 255);         
+        }
+        .nextmonth,.premonth{
+            text-decoration: none;
+        }
+        .premonth:hover,
+        .nextmonth:hover{
+            color: burlywood;
+        }   
+        .pso2{
+            position: absolute;
+            z-index: -1;
+            opacity: 0.3;
+            left: 445px;
+            margin-top: 65px;
         }
 
     </style>
 </head>
 
 <body class="main">
+    <div class="pso2">
+        <img src="./9edv99gnsi571.webp" alt="" style="">
+    </div>
     <?php
     $cal = [];
 
@@ -67,6 +87,7 @@
         $monthDays=date("t",strtotime($firstDay));
         $lastday=$year."-".$month."-".$monthDays;
         $spaceDays=$firstDayWeek;
+        // 日 一 二 三 四 五 六
         // spaceDays代表空白天數 例如 今天星期六  前面有6天
         $weeks=ceil(($monthDays+$spaceDays)/7); 
         // weeks 算出這個月有幾周
@@ -75,8 +96,8 @@
             $cal[]='';
         }
         for($i=0;$i<$monthDays;$i++){
-            $cal[]=date("Y-m-d",strtotime("$i days",strtotime($firstDay)));
-            // $cal[]=date("d",strtotime("$i days",strtotime($firstDay)));
+            // $cal[]=date("Y-m-d",strtotime("$i days",strtotime($firstDay)));
+            $cal[]=date("d",strtotime("$i days",strtotime($firstDay)));
         }
     // echo "<pre>";
     // print_r($cal);
@@ -93,9 +114,17 @@
     ?>
     <!-- ?表示當前頁面 -->
     <div style="display:flex;width:80%;justify-content:space-between;align-items:center">
-    <a href="?y=<?=$preYear;?>&m=<?=$preMonth;?>">上一個月</a>
+    
+    <a href="?y=<?=$preYear;?>&m=<?=$preMonth;?>" class="premonth">
+    <i class="fa-solid fa-arrow-left"></i>
+    上一個月
+    </a>
+
     <h1><?=$year;?> 年 <?=$month;?> 月份</h1>
-    <a href="?y=<?=$nextYear;?>&m=<?=$nextMonth;?>">下一個月</a>
+    
+    <a href="?y=<?=$nextYear;?>&m=<?=$nextMonth;?>" class="nextmonth">下一個月
+    <i class="fa-solid fa-arrow-right"></i>
+    </a>
     </div>
     <table>
     <tr>
