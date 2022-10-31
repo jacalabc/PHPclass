@@ -17,6 +17,7 @@
             echo "<span style='color:red'>";
             echo $_SESSION['error'];
             echo "</span>";
+            unset($_SESSION['error']);
         }
     ?>
     <form action="check2.php" method="post">
@@ -28,6 +29,7 @@
     }else{
         echo "登入成功 ";
         echo "<a href='center.php'>會員中心</a>";
+        echo "<a href='logout.php'>登出</a>";
     }
     ?>
 </body>

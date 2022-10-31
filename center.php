@@ -15,6 +15,6 @@ if(!isset($_SESSION['login'])){
 </head>
 <body>
     <h1><?="歡迎".$_SESSION['login'];?></h1>
-
+    <a href='logout.php'>登出</a>
 </body>
 </html>
