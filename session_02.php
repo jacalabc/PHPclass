@@ -9,9 +9,8 @@
 <body>
 <?php
 session_start();
-echo "HI ";
 echo $_SESSION['name'];
+echo " 的個人資料";
 ;?>
-<a href="session_02.php">個人資料</a>
 </body>
 </html>

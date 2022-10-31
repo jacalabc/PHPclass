@@ -15,7 +15,24 @@ $_SESSION['name']='MACK';
 echo $_SESSION['name'];
 ?>
 
-<a href="session_01.php">會員中心</a>
+<a href="session_01.php">會員中心</a> | 
+<a href="session_02.php">個人資料</a>
+
+
+<?php
+print_r($_SESSION);
+
+
+for($i=0;$i<20;$i++){
+    $_SESSION['user'][]=$i."-".rand(1000,9999);
+}
+
+echo "<pre>";
+print_r($_SESSION);
+
+echo "</pre>";
+
+?>
 
 </body>
 </html>
