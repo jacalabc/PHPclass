@@ -1,3 +1,14 @@
+<?php
+if(!isset($_COOKIE['times'])){
+    setcookie('times',0,time()+(60*60*24*365));
+}else{
+    $times=$_COOKIE['times'];
+    setcookie('times',$times,time()+(60*60*24*365));
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,11 +24,10 @@
 
     if(!isset($_SESSION['login'])){
 
-        if(isset($_SESSION['error'])){
+        if(isset($_GET['error'])){
             echo "<span style='color:red'>";
-            echo $_SESSION['error'];
+            echo $_GET['error'];
             echo "</span>";
-            unset($_SESSION['error']);
         }
     ?>
     <form action="check2.php" method="post">
@@ -28,8 +38,9 @@
     <?php
     }else{
         echo "登入成功 ";
-        echo "<a href='center.php'>會員中心</a>";
-        echo "<a href='logout.php'>登出</a>";
+        echo "<a href='center.php'>會員中心</a> | ";
+        echo "<a href='logout.php'>登出</a> <br>";
+        echo "這是你第 ".$_COOKIE['times']."次回來";
     }
     ?>
 </body>

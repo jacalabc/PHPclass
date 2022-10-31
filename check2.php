@@ -32,10 +32,16 @@ foreach($users as $user){
 
 if($chk){
     $_SESSION['login']=$formAcc;
+    $times=$_COOKIE['times']+1;
+    setcookie('times',$times,time()+(60*60*24*365));
 }else{
-    $_SESSION['error']="帳號或密碼錯誤";
+    $error="帳號或密碼錯誤";
 }
 
-header("location:login2.php");
+if(isset($error)){
+    header("location:login2.php?error=$error");
+}else{
+    header("location:login2.php");
+}
 
 ?>
